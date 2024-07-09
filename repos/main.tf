@@ -20,3 +20,20 @@ resource "google_compute_subnetwork" "public_subnet" {
   ip_cidr_range = "10.0.1.0/24"  
   depends_on    = [google_compute_network.my_vpc_network]
 }
+resource "google_compute_instance" "default" {
+  name         = "my-instance"
+  machine_type = "resource "google_compute_instance" "default" {
+  name         = "my-instance"
+  machine_type = "e2-micro"
+  boot_disk {
+    initialize_params {
+      image = "Ubuntu 20.04 LTS"
+    }
+  }
+  network_interface {
+    network = "google_compute_network.my_vpc_network.self_link"
+
+    access_config {
+      // Ephemeral public IP
+    }
+  }
